@@ -60,11 +60,23 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.querySelector(".search input");
   const people = document.querySelectorAll(".person");
+  const searchContainer = document.querySelector(".search");
 
-  if (!searchInput || people.length === 0) return;
+  if (!searchInput || people.length === 0 || !searchContainer) return;
+
+  // Show no results message
+  const noResultsMessage = document.createElement("div");
+  noResultsMessage.textContent = "No results found";
+  noResultsMessage.style.display = "none";
+  noResultsMessage.style.color = "#555";
+  noResultsMessage.style.marginTop = "10px";
+  noResultsMessage.style.fontSize = "14px";
+
+  searchContainer.appendChild(noResultsMessage);
 
   searchInput.addEventListener("input", () => {
     const query = searchInput.value.toLowerCase().trim();
+    let visibleCount = 0;
 
     people.forEach(person => {
       const nameEl = person.querySelector(".name");
@@ -74,10 +86,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (name.includes(query)) {
         person.style.display = "";
+        visibleCount++;
       } else {
         person.style.display = "none";
       }
     });
+
+    // Show / hide "no results"
+    if (visibleCount === 0 && query !== "") {
+      noResultsMessage.style.display = "block";
+    } else {
+      noResultsMessage.style.display = "none";
+    }
   });
 });
-
