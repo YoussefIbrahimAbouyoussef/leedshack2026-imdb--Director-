@@ -1,0 +1,191 @@
+:root {
+  --imdb-yellow: #f5c518;
+  --border-dark: #1f1f1f;
+  --text-muted: #9a9a9a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+}
+
+/* GLOBAL CONTAINER */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* HEADER */
+.imdb-header {
+  height: 64px;
+  background: linear-gradient(180deg, #1a1a1a, #121212);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.imdb-logo {
+  background: var(--imdb-yellow);
+  color: #000;
+  font-weight: 900;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.cast-label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lang {
+  background: transparent;
+  border: 1px solid var(--border-dark);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* HERO — THIS IS THE BIG FIX */
+.hero {
+  height: 420px; /* IMDb hero is NOT full screen */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0) 30%,
+    rgba(0, 0, 0, 0.85) 85%
+  );
+}
+
+/* UPLOAD */
+.upload-card {
+  width: 560px;
+  height: 180px;
+  border-radius: 18px;
+  background: radial-gradient(circle at top, #1e1e1e, #141414);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-pill {
+  width: 480px;
+  height: 54px;
+  border-radius: 999px;
+  background: #0f0f0f;
+  border: 1px solid #2a2a2a;
+  padding: 0 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.plus {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--imdb-yellow);
+  color: #000;
+  font-weight: 900;
+  display: grid;
+  place-items: center;
+}
+
+/* CAST SECTION */
+.cast-section {
+  padding: 18px 0 28px;
+  background: linear-gradient(180deg, #0e0e0e, #000);
+  border-top: 1px solid var(--border-dark);
+}
+
+.cast-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.search {
+  position: relative;
+  width: 220px;
+}
+
+.search input {
+  width: 100%;
+  height: 32px;
+  background: #0f0f0f;
+  border: 1px solid #2a2a2a;
+  border-radius: 6px;
+  padding: 0 34px 0 10px;
+  color: #fff;
+}
+
+.icon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.see-all {
+  margin-left: auto;
+  color: var(--imdb-yellow);
+  font-weight: 600;
+}
+
+/* ACTORS */
+.cast-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actor {
+  text-align: center;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #2a2a2a;
+}
+
+.name {
+  margin-top: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.meta {
+  font-size: 12px;
+  color: var(--text-muted);
+}
