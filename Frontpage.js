@@ -1,102 +1,98 @@
-//----- Upload button -----
-document.addEventListener("DOMContentLoaded", () => {
-  const plus = document.getElementById("plus");
-  if (!plus) return;
+// backend javascript file
+// this file handles backend logic for the project
 
-  const menu = document.createElement("div");
-  menu.style.position = "absolute";
-  menu.style.background = "#fff";
-  menu.style.border = "1px solid #ccc";
-  menu.style.padding = "5px";
-  menu.style.display = "none";
-  menu.style.zIndex = "1000";
+import express from "express";
+import multer from "multer";
+import dotenv from "dotenv";
 
-  const options = [
-    { label: "PDF File", accept: "application/pdf" },
-    { label: "Image", accept: "image/*" },
-    { label: "Text Document", accept: ".txt,.doc,.docx" }
-  ];
+// load environment variables
+dotenv.config();
 
-  document.body.appendChild(menu);
+// create express app
+const app = express();
 
-  plus.addEventListener("click", (e) => {
-    menu.style.display = menu.style.display === "none" ? "block" : "none";
-    menu.style.left = e.pageX + "px";
-    menu.style.top = e.pageY + "px";
-  });
+// allow json to be sent to backend
+app.use(express.json());
 
-  options.forEach(opt => {
-    const item = document.createElement("div");
-    item.textContent = opt.label;
-    item.style.cursor = "pointer";
-    item.style.padding = "4px";
+// setup upload folder
+const upload = multer({
+  dest: "uploads/"
+});
 
-    item.addEventListener("click", () => {
-      menu.style.display = "none";
 
-      const input = document.createElement("input");
-      input.type = "file";
-      input.accept = opt.accept;
-      input.style.display = "none";
-      document.body.appendChild(input);
-
-      input.click();
-
-      input.addEventListener("change", () => {
-        const file = input.files[0];
-        if (!file) return;
-        console.log(`${opt.label} selected:`, file.name);
-        input.remove();
-      });
+// upload button
+// frontend: user clicks +
+// backend: receive file
+app.post("/upload", upload.single("file"), (req, res) => {
+  // check if file exists
+  if (req.file == null) {
+    res.status(400).json({
+      error: "file not uploaded"
     });
+    return;
+  }
 
-    menu.appendChild(item);
+  // file is now on the server
+  // later this will be sent to gemini ai
+
+  res.json({
+    message: "file uploaded",
+    fileName: req.file.originalname
   });
 });
 
 
-// ------  Explore button ------
+// ------ explore search ------
+// fake data for now
+const people = [
+  { name: "Robert Downey Jr.", meta: "Budget · Age" },
+  { name: "Scarlett Johansson", meta: "Budget · Age" },
+  { name: "Tom Holland", meta: "Budget · Age" },
+  { name: "Chris Evans", meta: "Budget · Age" }
+];
 
-document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.querySelector(".search input");
-  const people = document.querySelectorAll(".person");
-  const searchContainer = document.querySelector(".search");
 
-  if (!searchInput || people.length === 0 || !searchContainer) return;
+// search people by name
+app.get("/search", (req, res) => {
+  const searchText = req.query.q;
 
-  // Show no results message
-  const noResultsMessage = document.createElement("div");
-  noResultsMessage.textContent = "No results found";
-  noResultsMessage.style.display = "none";
-  noResultsMessage.style.color = "#555";
-  noResultsMessage.style.marginTop = "10px";
-  noResultsMessage.style.fontSize = "14px";
-
-  searchContainer.appendChild(noResultsMessage);
-
-  searchInput.addEventListener("input", () => {
-    const query = searchInput.value.toLowerCase().trim();
-    let visibleCount = 0;
-
-    people.forEach(person => {
-      const nameEl = person.querySelector(".name");
-      if (!nameEl) return;
-
-      const name = nameEl.textContent.toLowerCase();
-
-      if (name.includes(query)) {
-        person.style.display = "";
-        visibleCount++;
-      } else {
-        person.style.display = "none";
-      }
+  // if nothing typed, return everything
+  if (!searchText) {
+    res.json({
+      results: people
     });
+    return;
+  }
 
-    // Show / hide "no results"
-    if (visibleCount === 0 && query !== "") {
-      noResultsMessage.style.display = "block";
-    } else {
-      noResultsMessage.style.display = "none";
+  const lowerSearch = searchText.toLowerCase();
+
+  const filteredPeople = [];
+
+  // loop through people
+  for (let i = 0; i < people.length; i++) {
+    const personName = people[i].name.toLowerCase();
+
+    if (personName.includes(lowerSearch)) {
+      filteredPeople.push(people[i]);
     }
+  }
+
+  res.json({
+    results: filteredPeople
   });
+});
+
+
+// ------ see all button ------
+// return all people
+app.get("/people", (req, res) => {
+  res.json({
+    results: people
+  });
+});
+
+
+// start backend server
+app.listen(3000, () => {
+  console.log("backend server running on port 3000");
 });
