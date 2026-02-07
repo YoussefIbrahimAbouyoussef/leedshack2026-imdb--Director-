@@ -11,11 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   menu.style.display = "none";
   menu.style.zIndex = "1000";
 
-  const options = [
-    { label: "PDF File", accept: "application/pdf" },
-    { label: "Image", accept: "image/*" },
-    { label: "Text Document", accept: ".txt,.doc,.docx" }
-  ];
+
 
   document.body.appendChild(menu);
 
