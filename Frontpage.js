@@ -1,4 +1,4 @@
-//upload button 
+//----- Upload button -----
 document.addEventListener("DOMContentLoaded", () => {
   const plus = document.getElementById("plus");
   if (!plus) return;
@@ -53,3 +53,31 @@ document.addEventListener("DOMContentLoaded", () => {
     menu.appendChild(item);
   });
 });
+
+
+// ------  Explore button ------
+
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.querySelector(".search input");
+  const people = document.querySelectorAll(".person");
+
+  if (!searchInput || people.length === 0) return;
+
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase().trim();
+
+    people.forEach(person => {
+      const nameEl = person.querySelector(".name");
+      if (!nameEl) return;
+
+      const name = nameEl.textContent.toLowerCase();
+
+      if (name.includes(query)) {
+        person.style.display = "";
+      } else {
+        person.style.display = "none";
+      }
+    });
+  });
+});
+
