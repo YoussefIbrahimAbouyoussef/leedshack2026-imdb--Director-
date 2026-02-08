@@ -91,8 +91,39 @@ app.get("/people", (req, res) => {
   });
 });
 
+// ✅ test route
+app.get("/", (req, res) => {
+  res.send("✅ Server is running");
+});
+
+// ✅ search route (your website uses this)
+app.get("/search", async (req, res) => {
+  try {
+    const q = (req.query.q || "").trim();
+
+    if (!q) {
+      const results = await collection.find({}).limit(20).toArray();
+      return res.json({ results });
+    }
+
+    const results = await collection
+      .find({ name: { $regex: q, $options: "i" } })
+      .limit(30)
+      .toArray();
+
+    res.json({ results });
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
 
 // start backend server
 app.listen(3000, () => {
   console.log("backend server running on port 3000");
 });
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`✅ Server listening on http://localhost:${PORT}`);
+});
+
