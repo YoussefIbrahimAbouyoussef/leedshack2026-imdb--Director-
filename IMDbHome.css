@@ -289,14 +289,15 @@ body {
 }
 
 .photo {
-  width: clamp(90px, 9vw, 130px);
-  height: clamp(90px, 9vw, 130px);
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
+  background-color: #2a2a2a;
   background-size: cover;
   background-position: center;
-  background: #2C2C2C;              /* image placeholder */
-  border: none;   
+  background-repeat: no-repeat;
 }
+
 
 .info {
   margin-top: 10px;

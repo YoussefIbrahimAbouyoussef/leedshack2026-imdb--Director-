@@ -70,3 +70,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const photos = document.querySelectorAll(".photo");
+
+  const testImages = [
+    "https://via.placeholder.com/300x300?text=Actor+1",
+    "https://via.placeholder.com/300x300?text=Actor+2",
+    "https://via.placeholder.com/300x300?text=Actor+3",
+    "https://via.placeholder.com/300x300?text=Actor+4",
+    "https://via.placeholder.com/300x300?text=Actor+5",
+    "https://m.media-amazon.com/images/M/MV5BOWUzNzIzMzQtNzMxYi00OWRiLTlhZjEtZTRjYWVkYzI4ZjMwXkEyXkFqcGc@._V1_.jpg"
+  ];
+
+  photos.forEach((photo, i) => {
+    photo.style.backgroundImage = `url(${testImages[i]})`;
+  });
+});
