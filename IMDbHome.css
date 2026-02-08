@@ -10,7 +10,7 @@
 html, body {
   height: 100%;
   margin: 0;
-  overflow: hidden;   /* 🚫 no scrolling */
+  overflow-y: auto;
 }
 
 
@@ -293,6 +293,7 @@ body {
   height: 120px;
   border-radius: 50%;
   background-color: #2a2a2a;
+  background-image: none;   /* baseline */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -352,9 +353,3 @@ body {
   color: #ffffff !important;
 }
 
-.photo {
-  width: 120px !important;
-  height: 120px !important;
-  background: red !important;
-  border-radius: 50% !important;
-}
