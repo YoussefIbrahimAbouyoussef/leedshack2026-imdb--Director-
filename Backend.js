@@ -118,9 +118,7 @@ app.get("/search", async (req, res) => {
 });
 
 // start backend server
-app.listen(3000, () => {
-  console.log("backend server running on port 3000");
-});
+
 
 const PORT = 3000;
 app.listen(PORT, () => {
