@@ -75,15 +75,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const photos = document.querySelectorAll(".photo");
 
   const testImages = [
-    "https://via.placeholder.com/300x300?text=Actor+1",
-    "https://via.placeholder.com/300x300?text=Actor+2",
-    "https://via.placeholder.com/300x300?text=Actor+3",
-    "https://via.placeholder.com/300x300?text=Actor+4",
-    "https://via.placeholder.com/300x300?text=Actor+5",
-    "https://m.media-amazon.com/images/M/MV5BOWUzNzIzMzQtNzMxYi00OWRiLTlhZjEtZTRjYWVkYzI4ZjMwXkEyXkFqcGc@._V1_.jpg"
+    "https://upload.wikimedia.org/wikipedia/commons/1/12/Robert_Downey_Jr_2014.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/8/8d/Scarlett_Johansson_C%C3%A9sar_2014.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/5/5e/Tom_Holland_by_Gage_Skidmore.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/3/3c/Chris_Evans_by_Gage_Skidmore_2.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/a/a3/Chris_Hemsworth_by_Gage_Skidmore_2.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/9/9d/Mark_Ruffalo_by_Gage_Skidmore.jpg"
   ];
 
-  photos.forEach((photo, i) => {
-    photo.style.backgroundImage = `url(${testImages[i]})`;
+  photos.forEach((photo, index) => {
+    if (testImages[index]) {
+      photo.style.backgroundImage = `url(${testImages[index]})`;
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const photos = document.querySelectorAll(".photo");
+
+  photos.forEach(photo => {
+    photo.style.backgroundColor = "red";
   });
 });

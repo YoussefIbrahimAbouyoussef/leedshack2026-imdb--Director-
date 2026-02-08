@@ -351,3 +351,10 @@ body {
 .topbar .top-actions a {
   color: #ffffff !important;
 }
+
+.photo {
+  width: 120px !important;
+  height: 120px !important;
+  background: red !important;
+  border-radius: 50% !important;
+}
