@@ -6,6 +6,7 @@
     <title>IMDb Style Mock</title>
     <link rel="stylesheet" href="IMDB.css" />
   </head>
+
   <body>
     <header class="imdb-header">
       <div class="container header-inner">
@@ -36,47 +37,18 @@
           <span>Explore</span>
 
           <div class="search">
-            <input type="text" />
+            <input id="searchInput" type="text" placeholder="Explore" />
             <span class="icon">🔍</span>
           </div>
 
           <span class="see-all">See All</span>
         </div>
 
-        <div class="cast-row">
-          <div class="actor">
-            <div class="avatar"></div>
-            <div class="name">Name</div>
-            <div class="meta">Budget · Age</div>
-          </div>
-          <div class="actor">
-            <div class="avatar"></div>
-            <div class="name">Name</div>
-            <div class="meta">Budget · Age</div>
-          </div>
-          <div class="actor">
-            <div class="avatar"></div>
-            <div class="name">Name</div>
-            <div class="meta">Budget · Age</div>
-          </div>
-          <div class="actor">
-            <div class="avatar"></div>
-            <div class="name">Name</div>
-            <div class="meta">Budget · Age</div>
-          </div>
-          <div class="actor">
-            <div class="avatar"></div>
-            <div class="name">Name</div>
-            <div class="meta">Budget · Age</div>
-          </div>
-          <div class="actor">
-            <div class="avatar"></div>
-            <div class="name">Name</div>
-            <div class="meta">Budget · Age</div>
-          </div>
-        </div>
+        <!-- ✅ THIS is the ONLY results row (start empty; JS fills it) -->
+        <div class="cast-row" id="results"></div>
       </div>
     </section>
+
     <script src="Frontpage.js"></script>
   </body>
 </html>
